@@ -1,16 +1,18 @@
 import React, { useState } from "react";
-import { Button, Container, CircularProgress } from "@material-ui/core";
+import { Button, Container } from "@material-ui/core";
+import Config from "./configs/configs";
+
 import CirclesCount from "./components/circlesCount";
+import LoadingCircle from "./components/loadingCircle";
 
 const App = () => {
-  const [value, setValue] = useState();
+  const [value, setValue] = useState(0);
   const [loading, setLoading] = useState(false);
 
   const randomCount = () => {
-    let Min = 1;
-    let Max = 100;
-
-    const Random = Math.floor(Math.random() * Max + Min);
+    const Random = Math.floor(
+      Math.random() * Config.size.max + Config.size.min
+    );
     setValue(Random);
   };
 
@@ -31,15 +33,20 @@ const App = () => {
 
   return (
     <Container className="App">
-      <h1>Satkomindo </h1>
+      <img
+        style={{ width: 300 }}
+        alt="logo"
+        src={require("./assets/img/brinetcom.png")}
+      />
+
       <Container>
-        <div style={{ marginTop: 20, fontSize: 40 }}>{value}</div>
-        <div>{loading ? <CircularProgress /> : <div />}</div>
+        <div>
+          {loading ? <LoadingCircle /> : <CirclesCount>{value}</CirclesCount>}
+        </div>
       </Container>
-      <CirclesCount />
       <div>
         <Button variant="contained" color="primary" onClick={chooseWinner}>
-          Tentukankan Pemenang
+          Choose the Winner!
         </Button>
       </div>
     </Container>

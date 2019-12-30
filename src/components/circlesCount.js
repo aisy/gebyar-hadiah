@@ -1,22 +1,31 @@
 import React from "react";
-import {} from "@material-ui/styles";
+import styled from "styled-components";
 
-const circlesCount = () => {
+const CircleLayout = styled.div`
+  display: inline-block;
+  width: 164px;
+  height: 164px;
+  margin: 20px;
+  border-radius: 50%;
+  background: #f59f23;
+  color: #fff;
+`;
+
+const TextLayout = styled.div`
+  margin-left: auto;
+  margin-right: auto;
+  position: relative;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 70px;
+`;
+
+const circlesCount = props => {
   return (
-    <>
-      <div style={styleCircle}>asdsad</div>
-    </>
+    <CircleLayout>
+      <TextLayout>{props.children}</TextLayout>
+    </CircleLayout>
   );
-};
-
-const styleCircle = {
-  padding: 10,
-  margin: 20,
-  display: "inline-block",
-  backgroundColor: "#FF8552",
-  borderRadius: "50%",
-  width: 100,
-  height: 100
 };
 
 export default circlesCount;
